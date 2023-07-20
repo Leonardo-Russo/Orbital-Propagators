@@ -1,0 +1,26 @@
+function DrawTraj3D(rMatrixECI)
+% Description: create a 3D Plot of the propagated orbit.
+
+X = rMatrixECI(:, 1);
+Y = rMatrixECI(:, 2);
+Z = rMatrixECI(:, 3);
+
+[x,y,z]=sphere;
+
+I = imread('earth.jpg');
+
+surface(6378.1363*x, 6378.1363*y, 6378.1363*z, flipud(I), 'FaceColor', 'texturemap', 'EdgeColor', 'none', 'CDataMapping', 'direct')
+
+hold on
+plot3(X,Y,Z,'Color','#ff7403', 'Linestyle', 'none', 'marker', '.', 'markersize', 5)
+plot3(0,0,0,'g*')
+hold off
+grid on
+axis equal
+xlabel('x')
+ylabel('y')
+zlabel('z')
+view([120, 30])
+
+
+end
